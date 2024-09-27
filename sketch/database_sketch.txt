@@ -1,0 +1,5 @@
+user table
+id primary key
+username,
+password
+
