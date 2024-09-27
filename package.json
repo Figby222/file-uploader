@@ -1,5 +1,5 @@
 {
-  "name": "node-template",
+  "name": "file-uploader",
   "version": "1.0.0",
   "description": "A Node.js drive repository for uploading & managing files",
   "main": "index.mjs",
@@ -28,5 +28,8 @@
     "passport": "^0.7.0",
     "passport-local": "^1.0.0",
     "pg": "^8.13.0"
+  },
+  "devDependencies": {
+    "prisma": "^5.20.0"
   }
 }
