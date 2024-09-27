@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Figby222/file-uploader#readme",
   "dependencies": {
+    "@prisma/client": "^5.20.0",
     "bcryptjs": "^2.4.3",
     "connect-pg-simple": "^10.0.0",
     "dotenv": "^16.4.5",
