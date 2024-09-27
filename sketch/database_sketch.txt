@@ -1,5 +1,14 @@
 user table
 id primary key
 username,
-password
+password,
+role
+
+file table
+id primary key
+location
+
+role enum
+Admin,
+User
 
