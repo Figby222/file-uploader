@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Sign Up</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+    </head>
+    <body>
+        <form action="/sign-up" method="POST">
+            <label for="username">Username: </label>
+            <input type="email" name="username" id="username" placeholder="example@example.com" value="<%= locals.username %>"/>
+            <label for="password">Password: </label>
+            <input type="password" name="password" id="password" />
+            <label for="confirm-password">Confirm Password: </label>
+            <input type="password" name="confirm_password" id="confirm-password" />
+            <button type="submit">Submit</button>
+        </form>
+    </body>
+</html>
