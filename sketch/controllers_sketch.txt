@@ -1,0 +1,10 @@
+signUpFormGet
+render sign up form 
+
+signUpPost
+make sure username is formatted as an email
+make sure username is unique
+make sure password is more than 6 characters
+make sure confirm password lines up with password
+insert user into db
+redirect user to /log-in
