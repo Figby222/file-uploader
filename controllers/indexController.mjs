@@ -2,6 +2,7 @@ import asyncHandler from "express-async-handler";
 import { body, validationResult } from "express-validator";
 import db from "../db/queries/userQueries.mjs";
 import { genPasswordHash } from "../lib/passwordHashingUtils.mjs";
+import passport from "../config/passport.mjs";
 
 const validateUserSignUp = [
     body("username")
@@ -60,5 +61,17 @@ function logInFormGet(req, res) {
     res.render("log-in-form");
 }
 
+const logInPost = [
+    passport.authenticate("local", { 
+        failureMessage: "Incorrect username or password", 
+        failureRedirect: "/log-in", 
+        successMessage: "Welcome back!", 
+        successRedirect: "/" 
+    }),
+    asyncHandler(async (req, res) => {
+        res.redirect("/");
+    })
+]
 
-export { indexRouteGet, signUpFormGet, signUpPost, logInFormGet };
+
+export { indexRouteGet, signUpFormGet, signUpPost, logInFormGet, logInPost };
