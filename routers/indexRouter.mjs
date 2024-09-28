@@ -11,4 +11,6 @@ indexRouter.get("/", indexController.indexRouteGet);
 
 indexRouter.post("/sign-up", indexController.signUpPost);
 
+indexRouter.post("/log-in", indexController.logInPost);
+
 export default indexRouter;
