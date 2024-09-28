@@ -19,7 +19,7 @@ model User {
   password String
 }
 
-model UserSession {
+model Session {
   id        String   @id
   sid       String   @unique
   data      String
