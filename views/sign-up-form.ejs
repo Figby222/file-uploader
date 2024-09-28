@@ -7,6 +7,7 @@
     </head>
     <body>
         <form action="/sign-up" method="POST">
+            <%- include("errors") %>
             <label for="username">Username: </label>
             <input type="email" name="username" id="username" placeholder="example@example.com" value="<%= locals.username %>"/>
             <label for="password">Password: </label>
