@@ -8,3 +8,12 @@ make sure password is more than 6 characters
 make sure confirm password lines up with password
 insert user into db
 redirect user to /log-in
+
+logInFormGet
+render log in form 
+
+logInPost
+check if user is correct
+check if password is correct
+if not, show error message
+redirect user to root
