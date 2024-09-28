@@ -41,7 +41,7 @@ const signUpPost = [
         const hashedPassword = await genPasswordHash(req.body.password);
         await db.createUser({
             username: req.body.username,
-            password: hashedPassword
+            hashedPassword: hashedPassword
         })
         res.redirect("/log-in");
     }) 
