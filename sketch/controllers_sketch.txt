@@ -22,3 +22,11 @@ uploadFileFormGet
 check if user is authenticated
 if not, redirect user to log in page
 if so, upload the file & redirect the user to root
+
+uploadFilePost
+check if user is logged in
+if not, redirect user to log in page
+continue
+remove spaces from file name
+upload file to folder
+insert filepath & file name into db
