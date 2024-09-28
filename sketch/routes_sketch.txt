@@ -1,3 +1,4 @@
 /sign-up
 /log-in
 /
+/files/upload
