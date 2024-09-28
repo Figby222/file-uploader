@@ -58,7 +58,7 @@ const signUpPost = [
 ]
 
 function logInFormGet(req, res) {
-    res.render("log-in-form");
+    res.render("log-in-form", { errors: req.session.messages ? [ { msg: req.session.messages[0] } ] : null });
 }
 
 const logInPost = [
