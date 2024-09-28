@@ -10,8 +10,12 @@ const validateUserSignUp = [
         .isEmail().withMessage("Username must be formatted like an email ex: example@example.com")
         .isLength({ max: 255 }).withMessage("Username must contain a maximum of 255 characters")
         .custom(async (username) => {
-            const userExists = !!await db.findUserByUsername(username);
-            return userExists;
+            const usernameAvailable = !await db.findUserByUsername(username);
+            if (!usernameAvailable) {
+                throw new Error("Username already taken");
+            }
+            
+            return true;
         }).withMessage("Username already taken"),
     body("password")
         .notEmpty().withMessage("Password must not be empty")
