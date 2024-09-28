@@ -5,6 +5,7 @@ import "dotenv/config";
 
 const ONE_DAY = 24 * 60 * 60 * 1000;
 const TWO_MINUTES = 2 * 60 * 1000;
+
 const session = expressSession({
     store: new PrismaSessionStore(
         new PrismaClient(),
@@ -12,7 +13,6 @@ const session = expressSession({
             checkPeriod: TWO_MINUTES,
             dbRecordIdIsSessionId: true,
             dbRecordIdFunction: undefined,
-            sessionModelName: "userSession"
         }
     ),
     secret: process.env.SECRET,
