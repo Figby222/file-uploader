@@ -12,7 +12,8 @@ async function main() {
             { username: "cookies@sandwich.com", password: await genPasswordHash("cookiesSandwich") },
             { username: "Ryan@me.com", password: await genPasswordHash("RyanMe") }
         ]
-    })
+    }).then(console.log);
 }
+
 
 main();
