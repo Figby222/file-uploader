@@ -17,3 +17,8 @@ check if user is correct
 check if password is correct
 if not, show error message
 redirect user to root
+
+uploadFileFormGet
+check if user is authenticated
+if not, redirect user to log in page
+if so, upload the file & redirect the user to root
