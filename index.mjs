@@ -1,6 +1,7 @@
 import express from "express";
 const app = express();
 import indexRouter from "./routers/indexRouter.mjs";
+import fileRouter from "./routers/fileRouter.mjs";
 import "dotenv/config";
 import path from "node:path";
 import session from "./config/expressSession.mjs";
@@ -15,6 +16,8 @@ app.use(session);
 app.use(passport.session());
 
 app.use(express.urlencoded({ extended: true }));
+
+app.use("/files", fileRouter)
 
 app.use("/", indexRouter);
 
