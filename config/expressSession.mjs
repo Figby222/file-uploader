@@ -12,7 +12,7 @@ const session = expressSession({
             checkPeriod: TWO_MINUTES,
             dbRecordIdIsSessionId: true,
             dbRecordIdFunction: undefined,
-            sessionModelName: "userSessions"
+            sessionModelName: "userSession"
         }
     ),
     secret: process.env.SECRET,
