@@ -11,10 +11,11 @@ const validateUserSignUp = [
         .isLength({ max: 255 }).withMessage("Username must contain a maximum of 255 characters")
         .custom(async (username) => {
             const usernameAvailable = !await db.findUserByUsername(username);
+
             if (!usernameAvailable) {
                 throw new Error("Username already taken");
             }
-            
+
             return true;
         }).withMessage("Username already taken"),
     body("password")
@@ -38,16 +39,26 @@ const signUpPost = [
     validateUserSignUp,
     asyncHandler(async (req, res) => {
         const errorsResult = validationResult(req);
+
         if (!errorsResult.isEmpty()) {
             res.render("sign-up-form", { username: req.body.username, errors: errorsResult.errors });
             return;
         }
+
         const hashedPassword = await genPasswordHash(req.body.password);
+
         await db.createUser({
             username: req.body.username,
             hashedPassword: hashedPassword
         })
+
         res.redirect("/log-in");
     }) 
 ]
-export { indexRouteGet, signUpFormGet, signUpPost };
+
+function logInFormGet(req, res) {
+    res.render("log-in-form");
+}
+
+
+export { indexRouteGet, signUpFormGet, signUpPost, logInFormGet };
