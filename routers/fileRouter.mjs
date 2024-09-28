@@ -5,4 +5,6 @@ const fileRouter = Router();
 
 fileRouter.get("/upload", fileController.uploadFileFormGet);
 
+fileRouter.post("/upload", fileController.uploadFilePost);
+
 export default fileRouter;
