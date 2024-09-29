@@ -11,7 +11,14 @@ name unique to folder & name,
 size,
 folder foreign key optional
 
+folder table
+files list 
+folder foreign key optional
+
+
+
+
+
 role enum
 Admin,
 User
-
