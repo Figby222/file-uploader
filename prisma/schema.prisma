@@ -27,8 +27,8 @@ model Session {
 }
 
 model File {
-  id Int @id @default(autoincrement())
+  id          Int    @id @default(autoincrement())
   destination String @unique
-  name String
-  size Int
+  name        String
+  size        Int
 }
