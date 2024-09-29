@@ -2,9 +2,12 @@ import authorizationUtils from "../lib/authorizationUtils.mjs";
 const { checkLoggedIn } = authorizationUtils;
 import multer from "multer";
 import asyncHandler from "express-async-handler";
+import Path from "node:path";
+
+const __dirname = import.meta.dirname;
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, "/uploads")
+        cb(null, Path.join(__dirname, "/uploads"))
     },
     filename: function (req, file, cb) {
         const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1E9);
