@@ -1,5 +1,17 @@
 import authorizationUtils from "../lib/authorizationUtils.mjs";
 const { checkLoggedIn } = authorizationUtils;
+import multer from "multer";
+import asyncHandler from "express-async-handler";
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, "/uploads")
+    },
+    filename: function (req, file, cb) {
+        const uniqueSuffix = Date.now() + "-" + Math.round(Math.random * 1E9);
+        cb(null, file.fieldname + "-" + uniqueSuffix);
+    }
+})
+const upload = multer({ storage: storage });
 
 const uploadFileFormGet = [
     checkLoggedIn,
@@ -7,4 +19,11 @@ const uploadFileFormGet = [
         res.render("upload-file.ejs")
     }
 ]
-export { uploadFileFormGet }
+
+const uploadFilePost = [
+    upload.array("files"),
+    asyncHandler(async (req, res) => {
+        console.log(req.files);
+    })
+]
+export { uploadFileFormGet, uploadFilePost }
