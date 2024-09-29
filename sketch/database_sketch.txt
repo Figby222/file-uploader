@@ -5,8 +5,11 @@ password,
 role
 
 file table
-id primary key
-location
+id primary key,
+location,
+name unique to folder & name,
+size,
+folder foreign key optional
 
 role enum
 Admin,
