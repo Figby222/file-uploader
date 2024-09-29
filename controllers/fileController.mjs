@@ -26,7 +26,7 @@ const uploadFileFormGet = [
 const uploadFilePost = [
     upload.array("files"),
     asyncHandler(async (req, res) => {
-        console.log(req.files);
+        res.redirect("/");
     })
 ]
 export { uploadFileFormGet, uploadFilePost }
