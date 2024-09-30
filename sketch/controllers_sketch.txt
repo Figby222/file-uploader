@@ -30,3 +30,8 @@ continue
 remove spaces from file name
 upload file to folder
 insert filepath & file name into db
+
+filesListGet
+check if user is authenticated
+get list of files from db
+render files list view
