@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Files</title>
+        <meta name="viewport" content="width=device-width, intial-scale=1" />
+    </head>
+    <body>
+        <h1 class="main-heading">Files</h1>
+        <% if (locals.files) { %>
+            <ul class="files-list">
+                <% files.forEach((file) => { %>
+                    <li class="file"><%= file.name %></li>
+                <% }) %>
+            </ul>
+        <% } %>
+    </body>
+</html>
