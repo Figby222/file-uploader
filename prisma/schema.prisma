@@ -29,7 +29,7 @@ model Session {
 model File {
   id          Int    @id @default(autoincrement())
   destination String @unique
-  path        String @unique
+  path        String @unique @default("Unknown")
   name        String
   size        Int
 }
