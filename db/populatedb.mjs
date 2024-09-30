@@ -23,7 +23,24 @@ async function main() {
             { name: "folder5", parentFolderId: 1 }
         ]
     }).then(console.log);
+
+    await prisma.file.createManyAndReturn({
+        data: [
+            { name: "file1", size: 64 },
+            { name: "file2", size: 64 },
+            { name: "file3", size: 64 },
+            { name: "file4", size: 64 },
+            { name: "file5", size: 64, folderId: 1 }
+        ]
+    }).then(console.log)
 }
+
+
+
+
+
+
+
 
 
 main();
