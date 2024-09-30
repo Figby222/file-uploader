@@ -27,8 +27,19 @@ model Session {
 }
 
 model File {
-  id   Int    @id @default(autoincrement())
-  path String @unique @default("Unknown")
-  name String
-  size Int
+  id       Int    @id @default(autoincrement())
+  path     String @unique @default("Unknown")
+  name     String
+  size     Int
+  folder   Folder @relation(fields: [folderId], references: [id])
+  folderId Int    @default(0)
 }
+
+model Folder {
+  id             Int      @id @default(autoincrement())
+  files          File[]
+  parentFolder   Folder   @relation(name: "ParentToChildFolders", fields: [parentFolderId], references: [id])
+  parentFolderId Int      @default(0)
+  childFolders   Folder[] @relation("ParentToChildFolders")
+}
+
