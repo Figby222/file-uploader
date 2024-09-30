@@ -4,6 +4,15 @@ import multer from "multer";
 import asyncHandler from "express-async-handler";
 import Path from "node:path";
 import db from "../db/queries/fileQueries.mjs";
+import { body, validationResult } from "express-validator";
+
+const uploadFileFormValidator = [
+    body("file_name")
+        .trim()
+        .notEmpty().withMessage("File Name must not be empty")
+        .isAlphanumeric("en-US", { ignore: /[-._]/i}).withMessage("File Name must be alphanumeric")
+        .isLength({ max: 50 }).withMessage("File name must contain less than 50 characters")
+]
 
 const __dirname = import.meta.dirname;
 const storage = multer.diskStorage({
@@ -27,7 +36,13 @@ const uploadFileFormGet = [
 const uploadFilePost = [
     checkLoggedIn,
     upload.array("files"),
+    uploadFileFormValidator,
     asyncHandler(async (req, res) => {
+        const errorsResult = validationResult(req);
+        if (!errorsResult.isEmpty()) {
+            res.render("upload-file", { errors: errorsResult.errors });
+            return;
+        }
         await db.createFile({
             path: req.files[0].path,
             name: req.body.file_name || "new_file",
