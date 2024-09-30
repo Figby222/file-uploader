@@ -52,4 +52,13 @@ const uploadFilePost = [
         res.redirect("/");
     })
 ]
-export { uploadFileFormGet, uploadFilePost }
+
+const getFilesList = [
+    checkLoggedIn,
+    asyncHandler(async (req, res) => {
+        const files = await db.getFiles();
+        res.render("files-list", { files: files });
+    })
+
+]
+export { uploadFileFormGet, uploadFilePost, getFilesList }
