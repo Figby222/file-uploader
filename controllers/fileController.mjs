@@ -24,6 +24,7 @@ const uploadFileFormGet = [
 ]
 
 const uploadFilePost = [
+    checkLoggedIn,
     upload.array("files"),
     asyncHandler(async (req, res) => {
         res.redirect("/");
