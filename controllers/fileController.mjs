@@ -3,6 +3,7 @@ const { checkLoggedIn } = authorizationUtils;
 import multer from "multer";
 import asyncHandler from "express-async-handler";
 import Path from "node:path";
+import db from "../db/queries/fileQueries.mjs";
 
 const __dirname = import.meta.dirname;
 const storage = multer.diskStorage({
@@ -27,7 +28,12 @@ const uploadFilePost = [
     checkLoggedIn,
     upload.array("files"),
     asyncHandler(async (req, res) => {
-        console.log(req.files);
+        await db.createFile({
+            path: req.files[0].path,
+            name: req.body.file_name || "new_file",
+            size: req.files[0].size
+        })
+
         res.redirect("/");
     })
 ]
