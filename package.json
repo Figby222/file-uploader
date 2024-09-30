@@ -5,7 +5,8 @@
   "main": "index.mjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "data-migration:add_file_path_prop": "node prisma/migrations/20240930002209_add_file_path_prop/data-migration.mjs"
+    "data-migration:add_file_path_prop": "node prisma/migrations/20240930002209_add_file_path_prop/data-migration.mjs",
+    "reset-database": "prisma db push --force-reset && node db/populatedb.mjs"
   },
   "repository": {
     "type": "git",
