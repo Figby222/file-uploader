@@ -3,3 +3,8 @@
 /
 /files/upload
 /files
+/folders
+/folders/new
+/folders/update
+/folders/
+/folders/delete
