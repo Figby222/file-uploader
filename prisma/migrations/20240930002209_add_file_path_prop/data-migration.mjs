@@ -10,13 +10,12 @@ async function main() {
             await tx.file.update({
                 where: { id: file.id },
                 data: {
-                    path: file.path ? file.path : "Unknown",
+                    path: file.path ? file.path : file.destination ? file.destination : "Unknown",
                 },
             });
         }
     });
 }
-
 main()
     .catch(async (e) => {
         console.error(e);
