@@ -8,6 +8,7 @@
     <body>
         <h1 class="main-heading">Upload a File</h1>
         <form action="/files/upload" method="POST" enctype="multipart/form-data">
+            <%- include("errors") %>
             <label for="files">Files: </label>
             <input type="file" name="files" id="files" multiple />
             <label for="file-name">File Name: </label>
