@@ -13,6 +13,16 @@ async function main() {
             { username: "Ryan@me.com", password: await genPasswordHash("RyanMe") }
         ]
     }).then(console.log);
+
+    await prisma.folder.createManyAndReturn({
+        data: [
+            { name: "folder1" },
+            { name: "folder2" },
+            { name: "folder3" },
+            { name: "folder4" },
+            { name: "folder5", parentFolderId: 1 }
+        ]
+    }).then(console.log);
 }
 
 
