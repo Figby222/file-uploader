@@ -28,7 +28,7 @@ model Session {
 
 model File {
   id       Int     @id @default(autoincrement())
-  path     String  @unique @default("Unknown")
+  path     String  @default("Unknown")
   name     String
   size     Int
   folder   Folder? @relation(fields: [folderId], references: [id])
