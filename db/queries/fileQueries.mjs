@@ -3,7 +3,7 @@ import pool from "../pool.mjs";
 async function createFile(fileDetails) {
     await pool.file.create({
         data: {
-            destination: fileDetails.destination,
+            path: fileDetails.path,
             name: fileDetails.name,
             size: fileDetails.size
         }
