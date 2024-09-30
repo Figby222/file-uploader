@@ -3,7 +3,7 @@ import * as fileController from "../controllers/fileController.mjs";
 
 const fileRouter = Router();
 
-fileRouter.get("/files", fileController.getFilesList);
+fileRouter.get("/", fileController.getFilesList);
 
 fileRouter.get("/upload", fileController.uploadFileFormGet);
 
