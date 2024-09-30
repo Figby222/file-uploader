@@ -7,5 +7,12 @@
     </head>
     <body>
         <h1><%= title %></h1>
+        <% if (locals.files) { %>
+            <ul class="files-list">
+                <% files.forEach((file) => { %>
+                    <li class="file"><%= file.name %></li>
+                <% }) %>
+            </ul>
+        <% } %>
     </body>
 </html>
