@@ -7,7 +7,7 @@ const getFiles = [
     checkLoggedIn,
     asyncHandler(async (req, res) => {
         const folderContents = await db.getFiles(parseInt(req.params.folderId));
-        res.render("files-list", { files: folderContents.files, childFolders: folderContents.childFolders})
+        res.render("files-list", { currentFolderId: req.params.folderId, files: folderContents.files, childFolders: folderContents.childFolders})
     })
 ]
 
