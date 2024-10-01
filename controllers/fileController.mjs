@@ -56,8 +56,8 @@ const uploadFilePost = [
 const getFilesList = [
     checkLoggedIn,
     asyncHandler(async (req, res) => {
-        const files = await db.getFiles();
-        res.render("files-list", { files: files });
+        const rootFolderContents = await db.getRootFolderContents();
+        res.render("files-list", { files: rootFolderContents });
     })
 
 ]
