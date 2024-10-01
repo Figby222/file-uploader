@@ -33,4 +33,15 @@ async function getFolderDetails(folderId) {
     return folderDetails;
 }
 
-export default { getFiles, createFolder, getFolderDetails }
+async function updateFolder(folderId, folderDetails) {
+    await pool.folder.update({
+        where: {
+            id: folderId,
+        },
+        data: {
+            name: folderDetails.folder_name
+        }
+    })
+}
+
+export default { getFiles, createFolder, getFolderDetails, updateFolder }
