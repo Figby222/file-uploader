@@ -35,11 +35,10 @@ const createFolderPost = [
                 childFolders: folderContents.childFolders 
             })
             return;
-    
         }
     
         await db.createFolder({
-            name: req.body.folder_name,
+            folder_name: req.body.folder_name,
             parentFolderId: parentFolderId
         })
         
