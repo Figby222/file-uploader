@@ -8,6 +8,7 @@
     <body>
         <h1 class="main-heading">Rename folder</h1>
         <form action="/files/folders/rename/<%= locals.folder.id %>" method="POST">
+            <%- include("errors") %>
             <label for="folder-name">Folder name: </label>
             <input type="text" name="folder_name" id="folder-name" value="<%= locals.folder.name %>" />
             <button type="submit">Submit</button>
