@@ -21,12 +21,17 @@
                     <li class="folder">
                         <a class="folder-link" href="/files/folders/<%= folder.id %>"><%= folder.name %>/</a>
                         <a class="rename-folder" href="/files/folders/rename/<%= folder.id %>">Rename</a>
+                        <form action="/folders/delete/<%= folder.id %>" method="POST">
+                            <button type="submit">Delete</button>
+                        </form>
                     </li>
+                    
                 <% }) %>
 
             </ul>
 
         <% } %>
+
         <% if (locals.files) { %>
             <ul class="files-list">
                 <% files.forEach((file) => { %>
@@ -36,5 +41,6 @@
             </ul>
 
         <% } %>
+
     </body>
 </html>
