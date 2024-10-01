@@ -29,7 +29,8 @@ const upload = multer({ storage: storage });
 const uploadFileFormGet = [
     checkLoggedIn,
     (req, res) => {
-        res.render("upload-file.ejs")
+        const folderId = req.params.folderId ? req.params.folderId : "";
+        res.render("upload-file.ejs", { folderId: folderId })
     }
 ]
 
