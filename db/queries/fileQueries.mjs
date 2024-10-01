@@ -11,9 +11,14 @@ async function createFile(fileDetails) {
 } 
 
 async function getRootFolderContents() {
-    const files = await pool.file.findMany();
+    const folders = await pool.folder.findMany({
+        where: { parentFolderId: null }
+    });
 
-    return files;
+    const files = await pool.file.findMany({
+        where: { folderId: null }
+    })
+
+    return { folders, files};
 }
-
 export default { createFile, getRootFolderContents }
