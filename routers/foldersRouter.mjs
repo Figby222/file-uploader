@@ -9,6 +9,8 @@ foldersRouter.post("/:folderId/create-folder", foldersController.createFolderPos
 
 foldersRouter.get("/:folderId", foldersController.getFiles);
 
+foldersRouter.post("/rename/:folderId", foldersController.renameFolderPost);
+
 
 
 export default foldersRouter;
