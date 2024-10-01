@@ -18,7 +18,7 @@ async function createFolder(options) {
     await pool.folder.create({
         data: {
             name: options.folder_name,
-            parentFolderId: options.parentFolderId
+            parentFolderId: options.parentFolderId || null
         }
     })
 };
