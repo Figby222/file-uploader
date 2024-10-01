@@ -10,11 +10,10 @@ async function createFile(fileDetails) {
     })
 } 
 
-async function getFiles() {
+async function getRootFolderContents() {
     const files = await pool.file.findMany();
 
     return files;
 }
 
-
-export default { createFile, getFiles }
+export default { createFile, getRootFolderContents }
