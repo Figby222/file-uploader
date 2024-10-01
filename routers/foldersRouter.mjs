@@ -11,6 +11,9 @@ foldersRouter.get("/:folderId", foldersController.getFiles);
 
 foldersRouter.post("/rename/:folderId", foldersController.renameFolderPost);
 
+foldersRouter.post("/delete/:folderId", foldersController.deleteFolderPost);
+
+
 
 
 export default foldersRouter;
