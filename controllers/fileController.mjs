@@ -49,8 +49,8 @@ const uploadFilePost = [
             size: req.files[0].size,
             folderId: folderId
         })
-
-        res.redirect("/files");
+        const redirectLink = folderId ? `/files/folders/${folderId}` : `/files`;
+        res.redirect(redirectLink);
     })
 ]
 const getFilesList = [
