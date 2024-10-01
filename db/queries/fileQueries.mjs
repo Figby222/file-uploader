@@ -5,11 +5,11 @@ async function createFile(fileDetails) {
         data: {
             path: fileDetails.path,
             name: fileDetails.name,
-            size: fileDetails.size
+            size: fileDetails.size,
+            folderId: fileDetails.folderId || null
         }
     })
 } 
-
 async function getRootFolderContents() {
     const folders = await pool.folder.findMany({
         where: { parentFolderId: null }
