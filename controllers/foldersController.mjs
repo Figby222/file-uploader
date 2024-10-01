@@ -90,7 +90,22 @@ const renameFolderPost = [
     })
 ]
 
+const deleteFolderPost = [
+    checkLoggedIn,
+    asyncHandler(async (req, res) => {
+        const folderId = parseInt(req.params.folderId);
+        const folderDetails = await db.getFolderDetails(folderId);
+        await db.deleteFolder(folderId);
+    
+        const redirectLink = folderDetails.parentFolderId ?
+            `/files/folders/${folderDetails.parentFolderId}` :
+            `/files`;
+        
+        res.redirect(redirectLink);
+    })
+]
 
 
 
-export { getFiles, createFolderPost, renameFolderFormGet, renameFolderPost }
+
+export { getFiles, createFolderPost, renameFolderFormGet, renameFolderPost, deleteFolderPost }
