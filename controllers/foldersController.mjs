@@ -50,4 +50,15 @@ const createFolderPost = [
     })
 ]
 
-export { getFiles, createFolderPost }
+const renameFolderFormGet = [
+    checkLoggedIn,
+    asyncHandler(async (req, res) => {
+        const folderId = parseInt(req.params.folderId)
+        const folderDetails = await db.getFolderDetails(folderId);
+        res.render("rename-folder", { folder: folderDetails });
+    })
+]
+
+
+
+export { getFiles, createFolderPost, renameFolderFormGet }
