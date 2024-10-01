@@ -57,7 +57,7 @@ const getFilesList = [
     checkLoggedIn,
     asyncHandler(async (req, res) => {
         const rootFolderContents = await db.getRootFolderContents();
-        res.render("files-list", { files: rootFolderContents });
+        res.render("files-list", { files: rootFolderContents.files, childFolders: rootFolderContents.folders });
     })
 
 ]
