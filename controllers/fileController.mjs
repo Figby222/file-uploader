@@ -50,7 +50,7 @@ const uploadFilePost = [
             folderId: folderId
         })
 
-        res.redirect("/");
+        res.redirect("/files");
     })
 ]
 const getFilesList = [
