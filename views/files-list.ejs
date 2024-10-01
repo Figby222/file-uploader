@@ -7,6 +7,12 @@
     </head>
     <body>
         <h1 class="main-heading">Files</h1>
+        <form action="/files/folders/<%= locals.currentFolderId || 0 %>/create-folder" method="POST">
+            <h2 class="form-heading">Create a new folder</h2>
+            <label for="folder-name">Folder name: </label>
+            <input type="text" name="folder_name" id="folder-name" value="<%= locals.folder_name %>" />
+            <button type="submit">Submit</button>
+        </form>
         <% if (locals.childFolders) { %>
             <ul class="folders-list">
                 <% childFolders.forEach((folder) => { %>
@@ -14,14 +20,18 @@
                         <a class="folder-link" href="/files/folders/<%= folder.id %>"><%= folder.name %>/</a>
                     </li>
                 <% }) %>
+
             </ul>
+
         <% } %>
         <% if (locals.files) { %>
             <ul class="files-list">
                 <% files.forEach((file) => { %>
                     <li class="file"><%= file.name %></li>
+
                 <% }) %>
             </ul>
+
         <% } %>
     </body>
 </html>
