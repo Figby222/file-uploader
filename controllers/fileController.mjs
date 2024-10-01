@@ -39,7 +39,7 @@ const uploadFilePost = [
     asyncHandler(async (req, res) => {
         const errorsResult = validationResult(req);
         if (!errorsResult.isEmpty()) {
-            res.render("upload-file", { errors: errorsResult.errors });
+            res.render("upload-file", { errors: errorsResult.errors, folderId: req.params.folderId ? req.params.folderId : "" });
             return;
         }
         const folderId = req.params.folderId ? parseInt(req.params.folderId) : null;
