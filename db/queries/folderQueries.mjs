@@ -23,6 +23,14 @@ async function createFolder(options) {
     })
 };
 
+async function getFolderDetails(folderId) {
+    const folderDetails = await pool.folder.findUnique({
+        where: {
+            id: folderId
+        }
+    })
 
+    return folderDetails;
+}
 
-export default { getFiles, createFolder }
+export default { getFiles, createFolder, getFolderDetails }
