@@ -15,6 +15,7 @@
             <input type="text" name="folder_name" id="folder-name" value="<%= locals.folder_name %>" />
             <button type="submit">Submit</button>
         </form>
+        <a class="upload-file" href="/files/upload/<%= locals.currentFolderId %>">Upload a File</a>
         <% if (locals.childFolders) { %>
             <ul class="folders-list">
                 <% childFolders.forEach((folder) => { %>
