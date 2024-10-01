@@ -8,6 +8,8 @@ fileRouter.use("/folders", foldersRouter);
 
 fileRouter.get("/", fileController.getFilesList);
 
+fileRouter.get("/upload/:folderId", fileController.uploadFileFormGet);
+
 fileRouter.get("/upload", fileController.uploadFileFormGet);
 
 fileRouter.post("/upload", fileController.uploadFilePost);
