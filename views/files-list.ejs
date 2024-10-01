@@ -7,6 +7,15 @@
     </head>
     <body>
         <h1 class="main-heading">Files</h1>
+        <% if (locals.childFolders) { %>
+            <ul class="folders-list">
+                <% childFolders.forEach((folder) => { %>
+                    <li class="folder">
+                        <a class="folder-link" href="/files/folders/<%= folder.id %>"><%= folder.name %>/</a>
+                    </li>
+                <% }) %>
+            </ul>
+        <% } %>
         <% if (locals.files) { %>
             <ul class="files-list">
                 <% files.forEach((file) => { %>
