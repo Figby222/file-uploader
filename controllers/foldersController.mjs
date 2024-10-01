@@ -67,7 +67,13 @@ const renameFolderPost = [
         const folderId = parseInt(req.params.folderId);
         const folderDetails = await db.getFolderDetails(folderId);
         if (!errorsResult.isEmpty()) {
-            res.render("rename-folder", { errors: errorsResult.errors, folder: folderDetails });
+            res.render("rename-folder", { 
+                errors: errorsResult.errors, 
+                folder: { 
+                    ...folderDetails, 
+                    name: req.body.folder_name 
+                } 
+            });
             return;
         }
         
