@@ -44,4 +44,20 @@ async function updateFolder(folderId, folderDetails) {
     })
 }
 
-export default { getFiles, createFolder, getFolderDetails, updateFolder }
+async function deleteFolder(folderId) {
+    const files = await pool.file.deleteMany({
+        where: {
+            folderId: folderId
+        }
+    })
+
+    const folder = await pool.folder.delete({
+        where: {
+            id: folderId
+        }
+    })
+
+    return { folder, files };
+}
+
+export default { getFiles, createFolder, getFolderDetails, updateFolder, deleteFolder }
