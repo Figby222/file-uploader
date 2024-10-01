@@ -25,7 +25,6 @@ const storage = multer.diskStorage({
     }
 })
 const upload = multer({ storage: storage });
-
 const uploadFileFormGet = [
     checkLoggedIn,
     (req, res) => {
@@ -33,7 +32,6 @@ const uploadFileFormGet = [
         res.render("upload-file.ejs", { folderId: folderId })
     }
 ]
-
 const uploadFilePost = [
     checkLoggedIn,
     upload.array("files"),
@@ -44,16 +42,17 @@ const uploadFilePost = [
             res.render("upload-file", { errors: errorsResult.errors });
             return;
         }
+        const folderId = req.params.folderId ? parseInt(req.params.folderId) : null;
         await db.createFile({
             path: req.files[0].path,
             name: req.body.file_name || "new_file",
-            size: req.files[0].size
+            size: req.files[0].size,
+            folderId: folderId
         })
 
         res.redirect("/");
     })
 ]
-
 const getFilesList = [
     checkLoggedIn,
     asyncHandler(async (req, res) => {
