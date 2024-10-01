@@ -25,7 +25,7 @@ const createFolderPost = [
     validateNewFolder,
     asyncHandler(async (req, res) => {
         const errorsResult = validationResult(req);
-        const parentFolderId = req.body.parentFolderId === 0 ? null : req.body.parentFolderId;
+        const parentFolderId = req.params.folderId === 0 ? null : req.params.folderId;
         if (!errorsResult.isEmpty()) {
             const folderContents = await db.getFiles(parentFolderId);
             res.render("files-list", { 
@@ -46,7 +46,7 @@ const createFolderPost = [
         const redirectLink = parentFolderId ? 
             `/files/folders/${parentFolderId}` :
             `/files`;
-            
+
         res.redirect(redirectLink)
     })
 ]
