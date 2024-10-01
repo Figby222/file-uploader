@@ -59,6 +59,32 @@ const renameFolderFormGet = [
     })
 ]
 
+const renameFolderPost = [
+    checkLoggedIn,
+    validateNewFolder,
+    asyncHandler(async (req, res) => {
+        const errorsResult = validationResult(req);
+        const folderId = parseInt(req.params.folderId);
+        const folderDetails = await db.getFolderDetails(folderId);
+        if (!errorsResult.isEmpty()) {
+            res.render("rename-folder", { errors: errorsResult.errors, folder: folderDetails });
+            return;
+        }
+        
+        await db.updateFolder(folderId, {
+            folder_name: req.body.folder_name
+        })
+    
+    
+        const redirectLink = folderDetails.parentFolderId ?
+            `/files/folders/${folderDetails.parentFolderId}` :
+            `/files`;
+    
+        res.redirect(redirectLink);
+    })
+]
 
 
-export { getFiles, createFolderPost, renameFolderFormGet }
+
+
+export { getFiles, createFolderPost, renameFolderFormGet, renameFolderPost }
