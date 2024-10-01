@@ -9,6 +9,7 @@
         <h1 class="main-heading">Files</h1>
         <form action="/files/folders/<%= locals.currentFolderId || 0 %>/create-folder" method="POST">
             <%- include("errors") %>
+            
             <h2 class="form-heading">Create a new folder</h2>
             <label for="folder-name">Folder name: </label>
             <input type="text" name="folder_name" id="folder-name" value="<%= locals.folder_name %>" />
@@ -19,6 +20,7 @@
                 <% childFolders.forEach((folder) => { %>
                     <li class="folder">
                         <a class="folder-link" href="/files/folders/<%= folder.id %>"><%= folder.name %>/</a>
+                        <a class="rename-folder" href="/files/folders/rename/<%= folder.id %>">Rename</a>
                     </li>
                 <% }) %>
 
