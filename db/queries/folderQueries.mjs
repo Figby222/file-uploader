@@ -14,6 +14,15 @@ async function getFiles(folderId) {
     return folderContents;
 }
 
+async function createFolder(options) {
+    await pool.folder.create({
+        data: {
+            name: options.folder_name,
+            parentFolderId: options.parentFolderId
+        }
+    })
+};
 
 
-export default { getFiles }
+
+export default { getFiles, createFolder }
