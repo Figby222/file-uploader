@@ -7,4 +7,4 @@
 /folders/new
 /folders/update
 /folders/
-/folders/delete
+/folders/delete && /share/:sharedFolderId && /share/:sharedFolderId/:fileId
