@@ -5,6 +5,7 @@ import asyncHandler from "express-async-handler";
 import Path from "node:path";
 import db from "../db/queries/fileQueries.mjs";
 import { body, validationResult } from "express-validator";
+import filePool from "../db/filePool.mjs";
 
 const uploadFileFormValidator = [
     body("file_name")
@@ -33,13 +34,28 @@ const uploadFilePost = [
             res.render("upload-file", { errors: errorsResult.errors, folderId: req.params.folderId ? req.params.folderId : "" });
             return;
         }
+
+        const file = req.files[0];
+
         const folderId = req.params.folderId ? parseInt(req.params.folderId) : null;
+        const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1E9)
+        const fileName = file.fieldname + "-" + uniqueSuffix + "-" + file.originalname
+
+        const filePath = folderId ? 
+            `public/${folderId}/${fileName}` :
+            `public/${fileName}`;
+
+        const { data, error } = await 
+            filePool.storage.from("myBucket")
+            .upload(filePath, file)
+
         await db.createFile({
-            path: req.files[0].path,
+            path: data.fullPath,
             name: req.body.file_name || "new_file",
             size: req.files[0].size,
             folderId: folderId
         })
+
         const redirectLink = folderId ? `/files/folders/${folderId}` : `/files`;
         res.redirect(redirectLink);
     })
