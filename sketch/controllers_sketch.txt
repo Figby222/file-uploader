@@ -35,3 +35,8 @@ filesListGet
 check if user is authenticated
 get list of files from db
 render files list view
+
+fileDetailsGet
+check if user is authenticated
+get file details from db
+render file details view
