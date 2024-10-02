@@ -61,4 +61,14 @@ const filesListGet = [
     })
 
 ]
-export { uploadFileFormGet, uploadFilePost, filesListGet }
+
+const fileDetailsGet = [
+    checkLoggedIn,
+    asyncHandler(async(req, res) => {
+        const fileId = parseInt(req.params.fileId);
+        const fileDetails = await db.getFileDetails(fileId);
+    
+        res.render("file-details", { file: fileDetails })
+    })
+]
+export { uploadFileFormGet, uploadFilePost, filesListGet, fileDetailsGet }
