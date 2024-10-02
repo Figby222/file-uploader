@@ -14,11 +14,11 @@ fileRouter.get("/upload/:folderId", fileController.uploadFileFormGet);
 
 fileRouter.get("/upload", fileController.uploadFileFormGet);
 
+fileRouter.get("/download/:fileId", fileController.downloadFileGet);
+
 fileRouter.post("/upload/:folderId", fileController.uploadFilePost);
 
 fileRouter.post("/upload", fileController.uploadFilePost);
-
-
 
 
 export default fileRouter;
