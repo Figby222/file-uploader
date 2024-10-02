@@ -2,7 +2,7 @@
 /log-in
 /
 /files/upload
-/files
+/files && /files/
 /folders
 /folders/new
 /folders/update
