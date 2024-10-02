@@ -53,7 +53,7 @@ const uploadFilePost = [
         res.redirect(redirectLink);
     })
 ]
-const getFilesList = [
+const filesListGet = [
     checkLoggedIn,
     asyncHandler(async (req, res) => {
         const rootFolderContents = await db.getRootFolderContents();
@@ -61,4 +61,4 @@ const getFilesList = [
     })
 
 ]
-export { uploadFileFormGet, uploadFilePost, getFilesList }
+export { uploadFileFormGet, uploadFilePost, filesListGet }
