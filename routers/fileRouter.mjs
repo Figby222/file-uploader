@@ -6,7 +6,7 @@ const fileRouter = Router();
 
 fileRouter.use("/folders", foldersRouter);
 
-fileRouter.get("/", fileController.getFilesList);
+fileRouter.get("/", fileController.filesListGet);
 
 fileRouter.get("/upload/:folderId", fileController.uploadFileFormGet);
 
