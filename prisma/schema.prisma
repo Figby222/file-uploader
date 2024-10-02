@@ -31,6 +31,7 @@ model File {
   path     String  @default("Unknown")
   name     String
   size     Int
+  uploadTime DateTime @default(now())
   folder   Folder? @relation(fields: [folderId], references: [id])
   folderId Int?
 }
