@@ -30,14 +30,13 @@
                 <% }) %>
 
             </ul>
-
         <% } %>
-
         <% if (locals.files) { %>
             <ul class="files-list">
                 <% files.forEach((file) => { %>
-                    <li class="file"><%= file.name %></li>
-
+                    <li class="file">
+                        <a class="file-details-link" href="/files/<%= file.id %>"><%= file.name %></a>
+                    </li>
                 <% }) %>
             </ul>
 
