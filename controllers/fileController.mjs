@@ -14,12 +14,7 @@ const uploadFileFormValidator = [
         .isLength({ max: 50 }).withMessage("File name must contain less than 50 characters")
 ]
 
-const storage = multer.memoryStorage({
-    filename: function (req, file, cb) {
-        const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1E9);
-        cb(null, file.fieldname + "-" + uniqueSuffix + "-" + file.originalname);
-    }
-})
+const storage = multer.memoryStorage()
 const upload = multer({ storage: storage });
 const uploadFileFormGet = [
     checkLoggedIn,
