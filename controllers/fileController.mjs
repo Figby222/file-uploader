@@ -87,8 +87,12 @@ const downloadFileGet = [
     asyncHandler(async (req, res) => {
         const fileId = parseInt(req.params.fileId);
         const fileDetails = await db.getFileDetails(fileId);
+
+        const { data, error } = await filePool.storage
+            .from("myBucket")
+            .createSignedUrl(fileDetails.path, 3600);
     
-        res.download(fileDetails.path, fileDetails.name);
+        res.redirect(data.signedUrl);
     })
 ]
 
