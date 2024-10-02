@@ -6,6 +6,7 @@ import Path from "node:path";
 import db from "../db/queries/fileQueries.mjs";
 import { body, validationResult } from "express-validator";
 import filePool from "../db/filePool.mjs";
+import supabase from "../db/filePool.mjs";
 
 const uploadFileFormValidator = [
     body("file_name")
@@ -50,7 +51,7 @@ const uploadFilePost = [
             .upload(filePath, file)
 
         await db.createFile({
-            path: data.fullPath,
+            path: data.path,
             name: req.body.file_name || "new_file",
             size: req.files[0].size,
             folderId: folderId
