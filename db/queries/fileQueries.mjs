@@ -21,4 +21,16 @@ async function getRootFolderContents() {
 
     return { folders, files};
 }
-export default { createFile, getRootFolderContents }
+
+async function getFileDetails(fileId) {
+    const file = await pool.file.findUnique({
+        where: {
+            id: fileId
+        }
+    })
+
+    return file;
+}
+
+
+export default { createFile, getRootFolderContents, getFileDetails }
