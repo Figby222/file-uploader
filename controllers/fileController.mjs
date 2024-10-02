@@ -48,7 +48,9 @@ const uploadFilePost = [
 
         const { data, error } = await 
             filePool.storage.from("myBucket")
-            .upload(filePath, file.buffer)
+            .upload(filePath, file.buffer, {
+                contentType: file.mimetype
+            })
 
         await db.createFile({
             path: data.path,
