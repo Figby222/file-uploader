@@ -6,8 +6,6 @@ const fileRouter = Router();
 
 fileRouter.use("/folders", foldersRouter);
 
-fileRouter.get("/:fileId", fileController.fileDetailsGet);
-
 fileRouter.get("/", fileController.filesListGet);
 
 fileRouter.get("/upload/:folderId", fileController.uploadFileFormGet);
@@ -15,6 +13,8 @@ fileRouter.get("/upload/:folderId", fileController.uploadFileFormGet);
 fileRouter.get("/upload", fileController.uploadFileFormGet);
 
 fileRouter.get("/download/:fileId", fileController.downloadFileGet);
+
+fileRouter.get("/:fileId", fileController.fileDetailsGet);
 
 fileRouter.post("/upload/:folderId", fileController.uploadFilePost);
 
