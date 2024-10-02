@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title><%= file.name %> - File Details</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+    </head>
+    <body>
+        <h1 class="main-heading"><%= file.name %> - File Details</h1>
+        <p class="file-size">Size (bytes): <%= file.size %></p>
+        <p class="file-creation-date">Creation Date: <%= file.uploadTime %></p>
+        <a href="/files/download/<%= file.id %>">Download</a>
+    </body>
+</html>
