@@ -40,3 +40,7 @@ fileDetailsGet
 check if user is authenticated
 get file details from db
 render file details view
+
+downloadFileGet
+check if user is authenticated
+send download the file
