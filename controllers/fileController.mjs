@@ -71,4 +71,16 @@ const fileDetailsGet = [
         res.render("file-details", { file: fileDetails })
     })
 ]
-export { uploadFileFormGet, uploadFilePost, filesListGet, fileDetailsGet }
+
+const downloadFileGet = [
+    checkLoggedIn,
+    asyncHandler(async (req, res) => {
+        const fileId = parseInt(req.params.fileId);
+        const fileDetails = await db.getFileDetails(fileId);
+    
+        res.download(fileDetails.path, fileDetails.name);
+    })
+]
+
+
+export { uploadFileFormGet, uploadFilePost, filesListGet, fileDetailsGet, downloadFileGet }
