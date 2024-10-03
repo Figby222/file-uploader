@@ -2,7 +2,7 @@ import asyncHandler from "express-async-handler";
 import db from "../db/queries/sharedFolderQueries.mjs";
 import { NotFoundError } from "../lib/errorUtils.mjs";
 import authorizationUtils from "../lib/authorizationUtils.mjs";
-const { checkLoggedIn } = authorizationUtils;
+const { checkLoggedIn } = authorizationUtils;a
 
 const sharedFolderGet = asyncHandler(async (req, res) => {
     const sharedFolderContents = await db.sharedFolderContentsGet(req.params.sharedFolderId);
