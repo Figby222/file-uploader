@@ -28,5 +28,26 @@ async function createSharedFolder(folderId, options) {
     return sharedFolder;
 }
 
+async function getSharedFolderFileDetails(sharedFolderId, fileId) {
+    const sharedFolder = await pool.sharedFolder.findUnique({
+        where: {
+            id: sharedFolderId
+        },
+        include: {
+            folder: {
+                include: {
+                    files: {
+                        where: {
+                            id: fileId
+                        }
+                    }
+                }
+            }
+        }
+    });
 
-export default { sharedFolderContentsGet, createSharedFolder }
+    return sharedFolder.folder.files[0];
+}
+
+
+export default { sharedFolderContentsGet, createSharedFolder, getSharedFolderFileDetails }
