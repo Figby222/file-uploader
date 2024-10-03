@@ -20,7 +20,7 @@ const sharedFolderGet = asyncHandler(async (req, res) => {
     if (!sharedFolderContents || isSharedFolderExpired) {
         throw new NotFoundError("Shared Folder Not Found");
     }
-    res.render("files-list", { files: sharedFolderContents.folder.files})
+    res.render("files-list", { files: sharedFolderContents.folder.files, sharedFolder: true })
 })
 
 const createSharedFolderPost = [
