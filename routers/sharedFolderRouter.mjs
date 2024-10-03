@@ -3,8 +3,8 @@ import * as sharedFolderController from "../controllers/sharedFolderController.m
 
 const sharedFolderRouter = Router({ mergeParams: true });
 
+sharedFolderRouter.get("/:sharedFolderId/:fileId", sharedFolderController.sharedFolderFileDetailsGet);
 sharedFolderRouter.get("/:sharedFolderId", sharedFolderController.sharedFolderGet);
-
 sharedFolderRouter.post("/create/:folderId", sharedFolderController.createSharedFolderPost);
 
 export default sharedFolderRouter;
