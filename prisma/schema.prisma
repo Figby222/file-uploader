@@ -43,7 +43,7 @@ model Folder {
   parentFolder   Folder?  @relation(name: "ParentToChildFolders", fields: [parentFolderId], references: [id])
   parentFolderId Int?
   childFolders   Folder[] @relation("ParentToChildFolders")
-  sharedFolder   SharedFolder? @relation("SharedFolder")
+  sharedFolder   SharedFolder[] @relation("SharedFolder")
 }
 model SharedFolder {
   id String @id @default(uuid())
