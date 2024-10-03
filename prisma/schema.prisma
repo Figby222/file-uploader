@@ -49,5 +49,5 @@ model SharedFolder {
   id String @id @default(uuid())
   expiresAt DateTime
   folder Folder @relation(name: "SharedFolder", fields: [folderId], references: [id])
-  folderId Int @unique
+  folderId Int
 }
