@@ -50,12 +50,12 @@ const createSharedFolderPost = [
 const sharedFolderFileDetailsGet = asyncHandler(async (req, res) => {
     const { sharedFolderId } = req.params;
     const fileId = req.params.fileId ? parseInt(req.params.fileId) : null;
-
     if (!fileId) {
         throw new NotFoundError(`Invalid file id ${fileId}`);
     }
-    const fileDetails = await db.getSharedFolderFileDetails(sharedFolderId, fileId);
-    if (!fileDetails) {
+    const { fileDetails, expiresAt } = await db.getSharedFolderFileDetails(sharedFolderId, fileId);
+    const isFileExpired = new Date(Date.now()).toISOString() > new Date(expiresAt).toISOString();
+    if (!fileDetails || isFileExpired) {
         throw new NotFoundError(`File with id ${fileId} in folder with shared Id ${sharedFolderId} not found`)
     }
     res.render("file-details", { file: fileDetails });
