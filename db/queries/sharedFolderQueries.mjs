@@ -16,4 +16,17 @@ async function sharedFolderContentsGet(sharedFolderId) {
 
     return folderContents;
 }
-export default { sharedFolderContentsGet }
+
+async function createSharedFolder(folderId, options) {
+    const sharedFolder = await pool.sharedFolder.create({
+        data: {
+            folderId: folderId,
+            expiresAt: options.expiresAt
+        }
+    })
+
+    return sharedFolder;
+}
+
+
+export default { sharedFolderContentsGet, createSharedFolder }
