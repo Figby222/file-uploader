@@ -46,7 +46,7 @@ async function getSharedFolderFileDetails(sharedFolderId, fileId) {
         }
     });
 
-    return sharedFolder.folder.files[0];
+    return { fileDetails: sharedFolder.folder.files[0], expiresAt: sharedFolder.expiresAt };
 }
 
 
