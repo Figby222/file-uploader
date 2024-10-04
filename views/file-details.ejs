@@ -6,14 +6,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
     </head>
     <body>
-        <h1 class="main-heading"><%= file.name %> - File Details</h1>
-        <p class="file-size">Size (bytes): <%= file.size %></p>
-        <p class="file-creation-date">Creation Date: <%= file.uploadTime %></p>
-        <% if (locals.sharedFolderFile) { %>
-            <a href="/files/share/<%= sharedFolderId %>/download/<%= file.id %>">Download</a>
-        <% } else { %>
-            <a href="/files/download/<%= file.id %>">Download</a>
-
-        <% } %>
+        <header>
+            <%- include("navbar") %>
+        </header>
+        <main>
+            <h1 class="main-heading"><%= file.name %> - File Details</h1>
+            <p class="file-size">Size (bytes): <%= file.size %></p>
+            <p class="file-creation-date">Creation Date: <%= file.uploadTime %></p>
+            <% if (locals.sharedFolderFile) { %>
+                <a href="/files/share/<%= sharedFolderId %>/download/<%= file.id %>">Download</a>
+            <% } else { %>
+                <a href="/files/download/<%= file.id %>">Download</a>
+    
+            <% } %>
+        </main>
     </body>
 </html>
