@@ -7,58 +7,58 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
     </head>
     <body>
-        <h1 class="main-heading">Files</h1>
-        <form action="/files/folders/<%= locals.currentFolderId || 0 %>/create-folder" method="POST">
-            <%- include("errors") %>
-            
-            <h2 class="form-heading">Create a new folder</h2>
-            <label for="folder-name">Folder name: </label>
-            <input type="text" name="folder_name" id="folder-name" value="<%= locals.folder_name %>" />
-            <button type="submit">Submit</button>
-        </form>
-        <a class="upload-file" href="/files/upload/<%= locals.currentFolderId %>">Upload a File</a>
-        <% if (locals.currentFolderId) { %>
-            <form action="/files/share/create/<%= currentFolderId %>" method="POST">
-                <%- include("errors", { errors: locals.shareFolderErrors }) %>
-                <h2 class="share-folder">Share Folder</h2>
-                <label for="share-folder-duration">Duration: </label>
-                <select name="share_folder_duration" id="share-folder-duration">
-                    <option value="<%= TEN_DAYS %>">10d</option>
-                </select>
-                <button type="submit">Share</button>
+        <header>
+            <%- include("navbar") %>
+        </header>
+        <main>
+            <h1 class="main-heading">Files</h1>
+            <form action="/files/folders/<%= locals.currentFolderId || 0 %>/create-folder" method="POST">
+                <%- include("errors") %>
+                
+                <h2 class="form-heading">Create a new folder</h2>
+                <label for="folder-name">Folder name: </label>
+                <input type="text" name="folder_name" id="folder-name" value="<%= locals.folder_name %>" />
+                <button type="submit">Submit</button>
             </form>
-
-        <% } %>
-
-        <% if (locals.childFolders) { %>
-            <ul class="folders-list">
-                <% childFolders.forEach((folder) => { %>
-                    <li class="folder">
-                        <a class="folder-link" href="/files/folders/<%= folder.id %>"><%= folder.name %>/</a>
-                        <a class="rename-folder" href="/files/folders/rename/<%= folder.id %>">Rename</a>
-                        <form action="/files/folders/delete/<%= folder.id %>" method="POST">
-                            <button type="submit">Delete</button>
-                        </form>
-                    </li>
-
-                <% }) %>
-            </ul>
-        <% } %>
-
-        <% if (locals.files) { %>
-            <ul class="files-list">
-                <% files.forEach((file) => { %>
-                    <li class="file">
-                        <% if (locals.sharedFolder) { %>
-                            <a class="file-details-link" href="/files/share/<%= sharedFolderId %>/<%= file.id %>"><%= file.name %></a>
-                        <% } else { %>
-                            <a class="file-details-link" href="/files/<%= file.id %>"><%= file.name %></a>
-                        <% } %>
-                    </li>
-                <% }) %>
-            </ul>
-
-        <% } %>
-
+            <a class="upload-file" href="/files/upload/<%= locals.currentFolderId %>">Upload a File</a>
+            <% if (locals.currentFolderId) { %>
+                <form action="/files/share/create/<%= currentFolderId %>" method="POST">
+                    <%- include("errors", { errors: locals.shareFolderErrors }) %>
+                    <h2 class="share-folder">Share Folder</h2>
+                    <label for="share-folder-duration">Duration: </label>
+                    <select name="share_folder_duration" id="share-folder-duration">
+                        <option value="<%= TEN_DAYS %>">10d</option>
+                    </select>
+                    <button type="submit">Share</button>
+                </form>
+            <% } %>
+    
+            <% if (locals.childFolders) { %>
+                <ul class="folders-list">
+                    <% childFolders.forEach((folder) => { %>
+                        <li class="folder">
+                            <a class="folder-link" href="/files/folders/<%= folder.id %>"><%= folder.name %>/</a>
+                            <a class="rename-folder" href="/files/folders/rename/<%= folder.id %>">Rename</a>
+                            <form action="/files/folders/delete/<%= folder.id %>" method="POST">
+                                <button type="submit">Delete</button>
+                            </form>
+                        </li>
+                    <% }) %>
+                </ul>
+            <% } %>
+            <% if (locals.files) { %>
+                <ul class="files-list">
+                    <% files.forEach((file) => { %>
+                        <li class="file">
+                            <% if (locals.sharedFolder) { %>
+                                <a class="file-details-link" href="/files/share/<%= sharedFolderId %>/<%= file.id %>"><%= file.name %></a>
+                            <% } else { %>
+                                <a class="file-details-link" href="/files/<%= file.id %>"><%= file.name %></a>
+                            <% } %>
+                        </li>
+                    <% }) %>
+                </ul>
+            <% } %>
+        </main>
     </body>
 </html>

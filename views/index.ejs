@@ -6,13 +6,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
     </head>
     <body>
-        <h1><%= title %></h1>
-        <% if (locals.files) { %>
-            <ul class="files-list">
-                <% files.forEach((file) => { %>
-                    <li class="file"><%= file.name %></li>
-                <% }) %>
-            </ul>
-        <% } %>
+        <header>
+            <%- include("navbar") %>
+        </header>
+        <main>
+            <h1><%= title %></h1>
+            <% if (locals.files) { %>
+                <ul class="files-list">
+                    <% files.forEach((file) => { %>
+                        <li class="file"><%= file.name %></li>
+                    <% }) %>
+                </ul>
+            <% } %>
+            
+        </main>
     </body>
 </html>
