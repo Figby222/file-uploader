@@ -5,6 +5,7 @@ import authorizationUtils from "../lib/authorizationUtils.mjs";
 const { checkLoggedIn } = authorizationUtils;
 import { body, validationResult } from "express-validator";
 import folderDb from "../db/queries/folderQueries.mjs";
+import filePool from "../db/filePool.mjs";
 
 const validateCreateSharedFolder = [
     body("share_folder_duration")
@@ -61,4 +62,30 @@ const sharedFolderFileDetailsGet = asyncHandler(async (req, res) => {
     res.render("file-details", { file: fileDetails });
 })
 
-export { sharedFolderGet, createSharedFolderPost, sharedFolderFileDetailsGet }
+const downloadSharedFolderFileGet = asyncHandler(async (req, res) => {
+    const { sharedFolderId } = req.params;
+    const fileId = req.params.fileId ? parseInt(req.params.fileId) : null;
+    
+    if (!fileId) {
+        throw new NotFoundError(`File with id ${fileId} in folder with shared Id ${sharedFolderId} not found`);
+    }
+
+    const { fileDetails, expiresAt } = await db.getSharedFolderFileDetails(sharedFolderId, fileId);
+    const isFileExpired = new Date(Date.now()).toISOString() > new Date(expiresAt).toISOString();
+    
+    if (isFileExpired) {
+        throw new NotFoundError(`File with id ${fileId} in folder with shared Id ${sharedFolderId} not found`);
+    }
+
+    const { data, error } = await filePool.storage
+        .from("myBucket")
+        .createSignedUrl(fileDetails.path, 3600);
+
+        console.log(data, error);
+        console.log(fileDetails);
+
+        res.redirect(data.signedUrl);
+
+})
+
+export { sharedFolderGet, createSharedFolderPost, sharedFolderFileDetailsGet, downloadSharedFolderFileGet }
