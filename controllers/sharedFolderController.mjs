@@ -59,7 +59,7 @@ const sharedFolderFileDetailsGet = asyncHandler(async (req, res) => {
     if (!fileDetails || isFileExpired) {
         throw new NotFoundError(`File with id ${fileId} in folder with shared Id ${sharedFolderId} not found`)
     }
-    res.render("file-details", { file: fileDetails, sharedFolderFile: true });
+    res.render("file-details", { file: fileDetails, sharedFolderFile: true, sharedFolderId: sharedFolderId });
 })
 
 const downloadSharedFolderFileGet = asyncHandler(async (req, res) => {
