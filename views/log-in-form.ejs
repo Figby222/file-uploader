@@ -6,14 +6,19 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
     </head>
     <body>
-        <h1 class="main-heading">Log In</h1>
-        <form action="/log-in" method="POST">
-            <%- include("errors") %>
-            <label for="username">Username: </label>
-            <input type="text" name="username" id="username" />
-            <label for="password">Password: </label>
-            <input type="password" name="password" id="password" />
-            <button type="submit">Submit</button>
-        </form>
+        <header>
+            <%- include("navbar") %>
+        </header>
+        <main>
+            <h1 class="main-heading">Log In</h1>
+            <form action="/log-in" method="POST">
+                <%- include("errors") %>
+                <label for="username">Username: </label>
+                <input type="text" name="username" id="username" />
+                <label for="password">Password: </label>
+                <input type="password" name="password" id="password" />
+                <button type="submit">Submit</button>
+            </form>
+        </main>
     </body>
 </html>
