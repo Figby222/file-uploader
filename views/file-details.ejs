@@ -9,6 +9,11 @@
         <h1 class="main-heading"><%= file.name %> - File Details</h1>
         <p class="file-size">Size (bytes): <%= file.size %></p>
         <p class="file-creation-date">Creation Date: <%= file.uploadTime %></p>
-        <a href="/files/download/<%= file.id %>">Download</a>
+        <% if (locals.sharedFolderFile) { %>
+            <a href="/files/share/<%= sharedFolderId %>/download/<%= file.id %>">Download</a>
+        <% } else { %>
+            <a href="/files/download/<%= file.id %>">Download</a>
+
+        <% } %>
     </body>
 </html>
